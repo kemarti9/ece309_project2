@@ -17,15 +17,21 @@ bool SentinelScanner::feed(const std::string& chunk, std::string& safe_output) {
     }
 
     // No sentinel found
-    // We must keep enough trailing characters to detect partial matches later.
     std::size_t keep = sentinel_.size() - 1;
+
     if (combined.size() >= keep) {
+        // Emit everything except the last `keep` chars
         safe_output = combined.substr(0, combined.size() - keep);
         pending_ = combined.substr(combined.size() - keep);
     } else {
-        // Entire combined is too small; keep all in pending
+        // Not enough to emit anything yet
         safe_output.clear();
         pending_ = combined;
+    }
+
+    // ⭐ CRITICAL FIX: Clamp pending_ so it NEVER exceeds keep
+    if (pending_.size() > keep) {
+        pending_ = pending_.substr(pending_.size() - keep);
     }
 
     return false;

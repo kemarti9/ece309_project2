@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-// Enum declares fixed (3) and named values: system, user, and assistant
 enum class Role {
     System,
     User,
@@ -10,19 +9,13 @@ enum class Role {
 
 class Message {
 public:
-    // Default constructor: sets role to System and content to empty string
-    Message();
+    Message(Role r, std::string c)
+        : role_(r), content_(std::move(c)) {}
 
-    // Constructor that initializes the private fields so role_ = role and content_ = content
-    Message(Role role, std::string content);
-
-    // Getter - returns the role of a message
-    Role role() const noexcept;
-
-    // Getter - returns the content of a message
-    const std::string& content() const noexcept;
+    Role role() const { return role_; }
+    const std::string& content() const { return content_; }
 
 private:
-    Role role_;              // The role of the message
-    std::string content_;    // The text content of the message
+    Role role_;
+    std::string content_;
 };

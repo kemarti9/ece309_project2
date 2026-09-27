@@ -2,15 +2,25 @@
 # PROVIDED — do not modify unless you add new source files of your own
 # (e.g. a separate message.cpp), in which case add them to CORE_SOURCES.
 
+#Edited because I developed using MSVC
+
 cmake_minimum_required(VERSION 3.16)
 project(MiniHarness VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Enable strict warnings and AddressSanitizer.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -fsanitize=address,undefined -g")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address,undefined")
+# ============================
+# Cross‑platform warning flags
+# ============================
+if (MSVC)
+    # MSVC does NOT support -Wall/-Wextra/-Wpedantic
+    add_compile_options(/W4 /permissive- /EHsc)
+else()
+    # GCC/Clang strict warnings + ASan
+    add_compile_options(-Wall -Wextra -Wpedantic -fsanitize=address,undefined -g)
+    add_link_options(-fsanitize=address,undefined)
+endif()
 
 include_directories(include)
 

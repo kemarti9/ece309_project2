@@ -1,0 +1,4 @@
+C:/Users/19107/Documents/GitHub/ece309_project2/build/CMakeFiles/miniharness.dir
+C:/Users/19107/Documents/GitHub/ece309_project2/build/CMakeFiles/test_p2.dir
+C:/Users/19107/Documents/GitHub/ece309_project2/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/19107/Documents/GitHub/ece309_project2/build/CMakeFiles/ZERO_CHECK.dir

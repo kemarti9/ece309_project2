@@ -1,0 +1,10 @@
+^C:\USERS\19107\DOCUMENTS\GITHUB\ECE309_PROJECT2\BUILD\CMAKEFILES\9AC03B1CF5AE1E87F7D97F94A8173335\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/19107/Documents/GitHub/ece309_project2 -BC:/Users/19107/Documents/GitHub/ece309_project2/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/19107/Documents/GitHub/ece309_project2/build/MiniHarness.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

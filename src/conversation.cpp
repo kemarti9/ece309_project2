@@ -1,7 +1,5 @@
 #include "core/conversation.h"
 
-// ---------------- Rule of Five ----------------
-
 Conversation::Conversation(const Conversation& other)
     : messages_(other.messages_) {}
 
@@ -22,8 +20,6 @@ Conversation& Conversation::operator=(Conversation&& other) noexcept {
     return *this;
 }
 
-// ---------------- Add Message Helpers ----------------
-
 void Conversation::addMessage(const Message& msg) {
     messages_.push_back(msg);
 }
@@ -40,7 +36,17 @@ void Conversation::add_assistant_message(const std::string& content) {
     messages_.push_back(Message(Role::Assistant, content));
 }
 
-// ---------------- Accessors ----------------
+void Conversation::append(const Message& msg) {
+    messages_.push_back(msg);
+}
+
+const Message* Conversation::begin() const {
+    return messages_.data();
+}
+
+const Message* Conversation::end() const {
+    return messages_.data() + messages_.size();
+}
 
 const std::vector<Message>& Conversation::messages() const noexcept {
     return messages_;

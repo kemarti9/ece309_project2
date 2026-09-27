@@ -173,7 +173,7 @@ int main() {
     std::cout << "Test 8 passed.\n";
 }
 
-//Test 9
+// Test 9
 {
     const std::string sentinel = "<|end_conversation|>";
     const int keep = sentinel.size() - 1;
@@ -190,7 +190,7 @@ int main() {
     assert(found == false);
 
     // pending_ must never exceed keep
-    std::string leftover = scanner.flush();
+    std::string leftover = scanner.flush().safe_text;
     assert(leftover.size() <= keep);
 
     std::cout << "Test 9 passed.\n";
